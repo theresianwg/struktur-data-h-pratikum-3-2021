@@ -248,6 +248,121 @@ Dilanjutkan dengan mencetak kata dengan urutan dimulai no 1 (satu).
 Mencetak output sesuai format yang diminta soal
 ![Visualisasi Cayo Niat 3](https://user-images.githubusercontent.com/81666422/117016444-ebb30680-ad1c-11eb-9345-29068568ead6.jpg)
 
+# Part Time
+## Verdict
+AC Saat Revisi
+
+## Bukti
+![Verdict Part Time](https://user-images.githubusercontent.com/81666422/117038604-0774d780-ad32-11eb-9538-3726b1d07f97.jpg)
+
+## Penjelasan Soal
+Pada soal Part Time diminta untuk mengurutkan id barang dimulai dari nomor 1 (satu), dan menghitung berapa banyak pendapatan toko hari tersebut. Kemudian menjumlah pendapatan dari tiap transaksi yang berlangsung pada hari itu.
+
+## Penjelasan Solusi
+```
+int main(){
+    AVL pohon;
+    avl_init(&pohon);
+ 
+    int banyakbarang, banyaktransaksi;
+    int temp_idbarang, temp_harga;
+    int sum = 0;
+    int temp_banyakbeli, temp_idbeli;
+    
+    scanf("%d%d", &banyakbarang, &banyaktransaksi);
+ 
+    for(int i = 0; i < banyakbarang; i++){
+        scanf("%d%d", &temp_idbarang, &temp_harga);
+ 
+        if(temp_idbarang != i + 1)
+        {
+            printf("ID harus urut\n");
+            return 0;
+        }
+        else {
+            avl_insert(&pohon, temp_harga, temp_idbarang);
+        }
+    }
+ 
+    for(int i = 0; i < banyaktransaksi; i++){
+        scanf("%d%d", &temp_banyakbeli, &temp_idbeli);
+ 
+        if(temp_idbeli > banyakbarang || temp_idbeli < 0){
+            printf("Maaf barang tidak tersedia\n");
+        }
+        else{
+            sum = sum + (SumUtil(&pohon, temp_idbeli) * temp_banyakbeli);
+        }
+    }
+    printf("%d\n", sum);
+ 
+}
+```
+Pertama menginisialisasi AVL menggunakan ```AVL pohon;``` ``` avl_init(&pohon);```, dilanjutkan dengan menginputkan banyak barang dan banyak transaksi dengan ```  scanf("%d%d", &banyakbarang, &banyaktransaksi);``` lalu dilanjutkan dengan menginputkan id barang dan harga barang ``` scanf("%d%d", &temp_idbarang, &temp_harga);```. Jika id barang tidak urut ```  if(temp_idbarang != i + 1) ``` maka akan mencetak ``` printf("ID harus urut\n");```. Lalu jika id barang sesuai urutan makan akan menginputkan banyaknya membeli barang dan id harga barang yang dibeli ``` scanf("%d%d", &temp_banyakbeli, &temp_idbeli); ``` dan jika id harga barang yang dibeli  diinputkan tidak ada/ tidak tersimpan maka akan tercetak barang tidak tersedia, dengan fungsi ``` printf("Maaf barang tidak tersedia\n");```. Lalu jika id harga barang yang dibeli ada maka jumlah transkasi dapat dijumlahkan dengan ```sum = sum + (SumUtil(&pohon, temp_idbeli) * temp_banyakbeli);```.
+
+## Visualisasi Solusi
+Contoh Input dan Output 0 pada Soal ( Jika ID tidak urut)
+![Visualisasi Part Time 1](https://user-images.githubusercontent.com/81666422/117040844-8539e280-ad34-11eb-9467-8c0d30501f20.jpg)
+
+Contoh Input dan Output 1 pada Soal ( Jumlah transaksi )
+![Visualisasi Part Time 2](https://user-images.githubusercontent.com/81666422/117040967-a6023800-ad34-11eb-958c-3882b1045500.jpg)
+
+# Bucyn
+## Verdict
+AC Saat Revisi
+
+## Bukti
+![Verdict Bucyn](https://user-images.githubusercontent.com/81666422/117043116-02665700-ad37-11eb-8aee-aa2e20f30b15.jpg)
+
+## Penjelasan Soal
+Pada soal Bucyn diminta untuk menaruh dan mencari kaset, untuk setiap kaset diberi nama yang berupa episode keberapa dari drakor yang ditonton. Lalu membuat sebuah program untuk mempermudah bucin dalam melaksanakan perintah dari pacarnya.
+
+## Penjelasan Solusi
+```
+int main(){
+    SinglyList myList;
+    slist_init(&myList);
+    
+    AVL avlavl;
+    avl_init(&avlavl);
+
+    int testcase;
+    scanf("%d", &testcase);
+    for(int i=1; i<=testcase; i++){
+        char command [1000000];
+        int angka;
+        scanf(" %s", command);
+        scanf("%d", &angka);
+
+        if (strcmp(command, "Taro")==0){
+            avl_insert(&avlavl, angka);
+        }
+        else if(strcmp(command, "Cari")==0){
+                inorder(&avlavl, &myList);
+                angka=slist_getIndex(&myList, angka);
+                
+
+            if(angka==-1)
+                printf("Kasetnya gak ada!\n");
+            else
+                printf("Kasetnya ada di tumpukan ke - %d\n", angka);
+
+            while (!slist_isEmpty(&myList)) slist_popFront(&myList);
+        }
+        else {
+            printf("AKU TUH GATAU HARUS NGAPAIN!\n");
+        }
+    }
+        return 0;
+}
+```
+Pertama di soal Bucyn menggunakan Singly List dan AVL tree dengan menginisialisasi singly list menggunakan ``` SinglyList myList;``` ```slist_init(&myList);```, dan juga untuk AVL menggunakan ``` AVL avlavl;``` ```avl_init(&avlavl);```. Dilanjutkan dengan menginputkan testcase jika contoh pada soal yaitu 11 (sebelas) menggunakan ```scanf("%d", &testcase);``` Lalu menginputkan command yang diartikan Taro dan Cari, dan angka dengan ``` scanf(" %s", command);``` ```scanf("%d", &angka);```. Lalu jika command nya adalah Taro maka ``` avl_insert(&avlavl, angka);``` dan jika command nya adalah Cari maka ``` inorder(&avlavl, &myList);``` ```angka=slist_getIndex(&myList, angka);```. Dan jika pada tumpukan tidak maka akan mencetak dengan fungsi ```  printf("Kasetnya gak ada!\n"); ``` dan jika terdapat pada suatu tumpukan ke- maka akan tercetak dengan ```printf("Kasetnya ada di tumpukan ke - %d\n", angka);```. Kemudian jika ada inputan selain command yaitu Tari dan Cari maka akan mencetak  ``` printf("AKU TUH GATAU HARUS NGAPAIN!\n");```.
+
+## Visual Solusi
+contoh jika Taro 100 Cari 100 maka,
+![Visual Bucyn](https://user-images.githubusercontent.com/81666422/117045046-435f6b00-ad39-11eb-9e22-456e19570a19.jpg)
+menghitung tumpukan dimulai dari node paling bawah kiri hingga node yang ditentukan, tumpukan merupakan jumlah node yang dilewati.
+
 # Nadut Belajar
 ## Verdict
 AC Saat Revisi
