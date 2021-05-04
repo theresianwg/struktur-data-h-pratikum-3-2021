@@ -181,7 +181,7 @@ Pertama menginisialisasi AVL menggunakan ``` AVL set;``` ```set.init();```, dila
 
 # Cayo Niat
 ## Verdict
-AC Saat Revisi
+AC Saat Revisi (Kompensasi Mas Daniel)
 
 ## Bukti
 ![Verdict Cayo Niat](https://user-images.githubusercontent.com/81666422/117013708-4d25a600-ad1a-11eb-9f5c-89699939ed82.jpg)
