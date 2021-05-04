@@ -1,0 +1,1 @@
+# struktur-data-h-pratikum-3-2021
