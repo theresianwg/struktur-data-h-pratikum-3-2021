@@ -6,7 +6,7 @@ AC Saat Revisi
 ![Verdict Kata-Kata](https://user-images.githubusercontent.com/81666422/116954995-87ac2600-acbb-11eb-88d8-126ea5fc2004.jpg)
 
 ## Penjelasan Soal
-Pada soal kata-kata diminta untuk mencari kata yang tersimpan.
+Pada soal kata-kata diminta untuk mencari setiap kata yang dicari, menentukan apakah kata yang dicari merupakan kata yang tersimpan.
 
 ## Penjelasan Solusi
 ```
